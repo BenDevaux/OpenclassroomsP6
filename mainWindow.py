@@ -30,7 +30,8 @@ def quitMenu():
         logging.info(" Fermeture via le menu 'Quitter' ")
         mainWindow.destroy()
 
-logging.basicConfig(filename="Scriptlog.log", encoding="utf-8", level=logging.DEBUG)
+#Génération des logs
+logging.basicConfig(filename="Scriptlog.log", encoding="utf-8", format="%(asctime)s %(levelname)s: %(message)s", datefmt="%d/%m/%Y %H:%M:%S", level=logging.DEBUG)
 
 #Création de la fenêtre principale
 mainWindow = Tk()
