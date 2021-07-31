@@ -58,8 +58,6 @@ pathFrame.grid(row=1, column=0, pady=15, padx=20, sticky=W)
 chooseFileButton = Button(csvWindow, text ="Parcourir", command=filePathCommand)
 chooseFileButton.grid(row=1, column=1, pady=15, padx=20)
 
-#filePath = askopenfilename(title="Ouvrir fichier csv", filetypes=[("txt files",".txt"),("all files", ".*")])
-
 #Bouton confirmer
 createButton = Button(csvWindow, text="Confirmer", command=createuser)
 createButton.grid(row=2, columnspan=2, pady=15)
