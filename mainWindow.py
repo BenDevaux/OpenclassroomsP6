@@ -1,12 +1,15 @@
 from tkinter import *
 from tkinter.messagebox import *
+import logging
 
 #Fonction d'ouverture de fenêtre pour la création manuelle
 def manualCreation():
+    logging.info(" Ouverture de la fenêtre de création de compte via bouton 'Manuel' ")
     showinfo("Titre3","Test du bouton de création manuelle")
 
 #Fonction d'ouverture de fenêtre pour la création via fichier CSV
 def csvCreation():
+    logging.info(" Ouverture de la fenêtre de création de compte via bouton 'Fichier CSV' ")
     showinfo("Titre3","Test du bouton de création via fichier CSV")
 
 #Fonction d'ouverture d'une fenêtre "à propos" depuis le menu "aide"
@@ -19,11 +22,15 @@ def helpMenu():
 Version : 1.0 \n\
 Date de la version : 30/07 \n ", justify=LEFT, bg="white" )
     testLabel.pack(padx=10, pady=10)
+    logging.info(" Ouverture de la fenêtre 'à propos' ")
 
 #Fonction pour quitter via le menu "Quitter"
 def quitMenu():
     if askyesno("Titre 1", "Souhaitez vous quitter ?"):
+        logging.info(" Fermeture via le menu 'Quitter' ")
         mainWindow.destroy()
+
+logging.basicConfig(filename="Scriptlog.log", encoding="utf-8", level=logging.DEBUG)
 
 #Création de la fenêtre principale
 mainWindow = Tk()
