@@ -9,24 +9,28 @@ csvWindow = Tk()
 csvWindow.configure(bg="white")
 
 def filePathCommand():
+    global filePath
     filePath = askopenfilename(title="Ouvrir fichier csv", filetypes=[("csv files",".csv")])
     testText = Label(pathFrame, text=filePath, bg="white")
     testText.pack()
     logging.info( f"Sélections du fichier {filePath} ")
 
-def createuser():
-    contenu = open(filePath,encoding="utf-8")
-    csv_contenu = csv.reader(contenu)
-    donnees_ligne = list(csv_contenu)
-    for line in donnees_ligne[1:]:
-        lname = line[0]
-        fname = line[1]
-        user = line[2]
-        dname = fname + " " + lname
-        ou = pyad.adcontainer.ADContainer.from_dn("ou=Utilisateurs, ou=OPENTP, dc=opentp, dc=lan")
-        new_user = pyad.aduser.ADUser.create(user,ou,password="Bouj15ko", optional_attributes={"givenName" : fname, "sn" : lname, "displayName" : dname})
-        showinfo("Titre 3", f"L'utilisateur {fname} {lname} a bien été créé")
-        logging.info(f"Création de l'utilisateur {fname} {lname}")
+def createUser():
+    if filePath.endswith(".csv"):
+        contenu = open(filePath,encoding="utf-8")
+        csv_contenu = csv.reader(contenu)
+        donnees_ligne = list(csv_contenu)
+        for line in donnees_ligne[1:]:
+            lname = line[0]
+            fname = line[1]
+            user = line[2]
+            dname = fname + " " + lname
+            ou = pyad.adcontainer.ADContainer.from_dn("ou=Utilisateurs, ou=OPENTP, dc=opentp, dc=lan")
+            new_user = pyad.aduser.ADUser.create(user,ou,password="Bouj15ko", optional_attributes={"givenName" : fname, "sn" : lname, "displayName" : dname})
+            showinfo("Titre 3", f"L'utilisateur {fname} {lname} a bien été créé")
+            logging.info(f"Création de l'utilisateur {fname} {lname}")
+    else:
+        showwarning("Titre 2", "Vous n'avez pas entré de fichier CSV, veuillez cliquer sur le bouton Parcourir")
 
 #Fonction pour quitter via le menu "Quitter"
 def quitMenu():
@@ -59,7 +63,7 @@ chooseFileButton = Button(csvWindow, text ="Parcourir", command=filePathCommand)
 chooseFileButton.grid(row=1, column=1, pady=15, padx=20)
 
 #Bouton confirmer
-createButton = Button(csvWindow, text="Confirmer", command=createuser)
+createButton = Button(csvWindow, text="Confirmer", command=createUser)
 createButton.grid(row=2, columnspan=2, pady=15)
 
 
