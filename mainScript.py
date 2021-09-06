@@ -5,14 +5,14 @@
     .Notes
     Auteur : Benjamin DEVAUX
     Version: Alpha 0.1
-    Date: 02/08/2021
+    Date: 23/08/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
 """
 
 #import des librairies
 import csv #Exploitation de fichier CSV
-#from pyad import * #Communication avec l'AD
+from pyad import * #Communication avec l'AD
 from tkinter import * #Création d'interface graphique
 from tkinter.messagebox import * #Affichage de message d'information
 from tkinter.filedialog import * #Recherche de fichier via l'explorateur
@@ -33,7 +33,7 @@ def helpMenu():
     helpTitle.pack(padx=5, pady=5)
     testLabel = Label(helpWindow, text="Outil créé par : Benjamin Devaux \n\
 Version : 1.0 \n\
-Date de la version : 30/07 \n ", justify=LEFT, bg="white" )
+Date de la version : 23/08 \n ", justify=LEFT, bg="white" )
     testLabel.pack(padx=10, pady=10)
     logging.info(" Ouverture de la fenêtre 'à propos' ")
 
@@ -46,6 +46,12 @@ def quitMenu():
         logging.info(" Fermeture via le menu 'Quitter' ")
         mainWindow.destroy()
 
+def displayManualCreationWindow():
+    global configuration
+    global mainWindow
+    manualCreationWindow.manualWindow(configuration, mainWindow)
+
+#Ouverture du fichier de configuration
 configuration = configparser.ConfigParser()
 configuration.read('configuration.ini')
 
@@ -81,9 +87,6 @@ Vous pouvez les créer manuellement ou à l'aide d'un fichier CSV.\n\
 Veuillez appuyer sur le bouton correspondant à la méthode que vous souhaitez utiliser.", justify=LEFT, bg="white")
 tutorialLabel.pack(padx=5, pady=10)
 
-def displayManualCreationWindow():
-    global configuration
-    manualCreationWindow.manualWindow(configuration)
 #Bouton création manuelle
 manualButton = Button(mainWindow, text="Manuel", command=displayManualCreationWindow, width=15)
 manualButton.pack(side=LEFT, pady=15, padx=70)
