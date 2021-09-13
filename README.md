@@ -1,11 +1,11 @@
-#titreSCRIPT DE GESTION DE L'ACTIVE DIRECTORY
+# SCRIPT DE GESTION DE L'ACTIVE DIRECTORY
 
-##titrePOURQUOI ?
+## POURQUOI ?
 
 Ce script permet de centraliser et simplifier la gestion d'utilisateurs sur l'Active Directory.  
 Il permet, à l'aide d'une interface graphique, de créer et supprimer des utilisateurs avec possibilité de choix des OU et groupes dont lesquels l'utilisateur doit faire parti.  
   
-##titreCOMMENT S'EN SERVIR ?  
+## COMMENT S'EN SERVIR ?  
   
 Au lancement du script est présenté trois options : Manuel, Delete, CSV  
   
@@ -22,7 +22,7 @@ Ce bouton ouvre une fenêtre qui mène à un explorateur de fichier, il est néc
 Le fichier doit être construit comme ceci : Nom, prénom, OU  
 Le bouton "confirmer" permet ensuite la création de tous les utilisateurs présents dans le fichier.  
   
-##titreMANUEL D'EXPLOITATION
+## MANUEL D'EXPLOITATION
   
 * Ajouter un groupe :  
 Les groupes sont gérés à l'aide du fichier de configuration configuration.ini  
@@ -35,6 +35,4 @@ Les OU sont également gérées à l'aide du fichier configuration.ini
 Elles sont à ajouter dans la catégorie [OU] sous la forme suivante :  
 nomdel'ou = ou=nomdel'ou, ou=Utilisateurs, ou=OPENTP, dc=opentp, dc=lan  
   
-
-##titreFONCTIONNEMENT  
 
