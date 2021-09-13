@@ -20,6 +20,7 @@ from tkinter import ttk #Création de checkbox
 import logging #Gestion des logs
 import ADcsv
 import manualCreationWindow
+import selectOUWin
 import configparser
 
 #Fonction d'ouverture d'une fenêtre "à propos" depuis le menu "aide"
@@ -51,6 +52,10 @@ def displayManualCreationWindow():
     global mainWindow
     manualCreationWindow.manualWindow(configuration, mainWindow)
 
+def displaySelectWindow():
+    global configuration, mainWindow
+    selectOUWin.selectOUWindow(configuration, mainWindow)
+    
 #Ouverture du fichier de configuration
 configuration = configparser.ConfigParser()
 configuration.read('configuration.ini')
@@ -94,5 +99,8 @@ manualButton.pack(side=LEFT, pady=15, padx=70)
 #Bouton fichier CSV
 csvButton = Button(mainWindow, text="Fichier CSV", command=ADcsv.CSVFileWindow, width=15)
 csvButton.pack(side=RIGHT, pady=15, padx=70)
+
+deleteButton = Button(mainWindow, text="Delete", command=displaySelectWindow, width=15)
+deleteButton.pack(side=LEFT, pady=15, padx=70)
 
 mainWindow.mainloop()

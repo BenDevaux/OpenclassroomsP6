@@ -4,8 +4,8 @@
 
     .Notes
     Auteur : Benjamin DEVAUX
-    Version: Alpha 0.1
-    Date: 23/08/2021
+    Version: 1.0
+    Date: 13/09/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
 """
@@ -33,6 +33,9 @@ def quitMenu():
         manualCreationWindow.destroy()
 
 def selectedGroup():
+    """
+        selectedGroup : Récupère les groupes cochés dans un dictionnaire
+    """
     global groupe
     groupe = {}
     for key in groupsList:
@@ -50,6 +53,9 @@ def callUserCreation():
 
 
 def selectOU(event):
+    """
+        selectOU : Récupère la valeur sélectionnée dans la liste déroulante
+    """
     global OUList, OUCombo, selectedOU
     OU = OUCombo.get()
     selectedOU = OUList[OU]
@@ -64,12 +70,7 @@ def manualCreation():
     fname = firstnameEntry.get()
     lname = lastnameEntry.get()
     password = passwordEntry.get()
-    """
-    globalGroup = pyad.adgroup.ADGroup.from_dn("CN=GLOBAL,OU=Groupes,DC=opentp,DC=lan")
-    techGroup = pyad.adgroup.ADGroup.from_dn("CN=GRP_TECH,OU=Groupes,DC=opentp,DC=lan")
-    comptaGroup = pyad.adgroup.ADGroup.from_dn("CN=GRP_Compta,OU=Groupes,DC=opentp,DC=lan")
-    RHGroup = pyad.adgroup.ADGroup.from_dn("CN=GRP_RH,OU=Groupes,DC=opentp,DC=lan")
-    """
+    
     if len(fname) == 0:
         showwarning("Erreur", "Vous n'avez pas renseigné de prénom !")
         logging.warning("Tentative de création sans avoir de prénom renseigné")
@@ -96,19 +97,11 @@ def manualCreation():
                     print(grp)
                     pyad.adgroup.ADGroup.from_dn(grp).add_members(selectUser)
                 
-                
-                """
-                if globalButton.instate(['selected']):
-                    selectUser.add_to_group(globalGroup)
-                if techButton.instate(['selected']):
-                    selectUser.add_to_group(techGroup)
-                if comptaButton.instate(['selected']):
-                    selectUser.add_to_group(comptaGroup)
-                if RHButton.instate(['selected']):
-                    selectUser.add_to_group(RHGroup)
-                """
 
 def manualWindow(configuration, mainWindow):
+    """
+        manualWindow : Création de la fenêtre de création manuelle d'utilisateur
+    """
     manualCreationWindow = Toplevel(mainWindow)
     manualCreationWindow.configure(bg="white")
 
@@ -154,7 +147,8 @@ def manualWindow(configuration, mainWindow):
 
     passwordEntry = Entry(manualCreationWindow, bg="white", show="*", width=15)
     passwordEntry.grid(row=2, pady=20, padx=20, column=1)
-
+    
+    #OU
     OULabel = Label(manualCreationWindow, bg="white", text="OU :")
     OULabel.grid(row=2, pady=20, padx=20, column=2)
 
@@ -167,7 +161,6 @@ def manualWindow(configuration, mainWindow):
     OUCombo.current(0)
     OUCombo.grid(row=2, pady=20, padx=20, column=3)
     OUCombo.bind("<<ComboboxSelected>>", selectOU)
-
 
 
     #Groupes
@@ -187,21 +180,6 @@ def manualWindow(configuration, mainWindow):
         button.state(['!alternate'])
         button.grid(sticky=W)
 
-    
-    """
-    globalButton = ttk.Checkbutton(groupsFrame, text="Global")
-    globalButton.state(['!alternate'])
-    globalButton.grid(sticky=W)
-    techButton = ttk.Checkbutton(groupsFrame, text="Technicien")
-    techButton.state(['!alternate'])
-    techButton.grid(sticky=W)
-    comptaButton = ttk.Checkbutton(groupsFrame, text="Comptabilité")
-    comptaButton.state(['!alternate'])
-    comptaButton.grid(sticky=W)
-    RHButton = ttk.Checkbutton(groupsFrame, text="Ressources Humaines")
-    RHButton.state(['!alternate'])
-    RHButton.grid(sticky=W)
-    """
 
     #Bouton confirmer
     manualCreationButton = Button(manualCreationWindow, text="Confirmer", command=manualCreation)

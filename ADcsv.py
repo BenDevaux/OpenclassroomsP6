@@ -4,8 +4,8 @@
 
     .Notes
     Auteur : Benjamin DEVAUX
-    Version: Alpha 0.9
-    Date: 16/08/2021
+    Version: 1.0
+    Date: 13/09/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
 """

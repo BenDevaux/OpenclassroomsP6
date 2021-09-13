@@ -1,11 +1,11 @@
 """
     .Description:
-    Script de création de compte Active Directory, fonction de création des utilisateurs
+    Script de création de compte Active Directory, fenêtre de création manuelle
 
     .Notes
     Auteur : Benjamin DEVAUX
-    Version: Alpha 0.9
-    Date: 16/08/2021
+    Version: 1.0
+    Date: 13/09/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
 """

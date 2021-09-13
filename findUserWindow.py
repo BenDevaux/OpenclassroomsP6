@@ -1,10 +1,27 @@
+"""
+    .Description:
+    Script de création de compte Active Directory, fenêtre de création manuelle
+
+    .Notes
+    Auteur : Benjamin DEVAUX
+    Version: 1.0
+    Date: 13/09/2021
+
+    Réalisé sous Python 3.9.6, testé sur Windows server 2016
+"""
+
 from pyad import *
 from tkinter import *
 from tkinter import ttk
+from tkinter.messagebox import *
+from tkinter.filedialog import *
 import configparser
+import logging
 
 def userWindow(selectedOU):
-
+    """
+        userWindow : Création de la fenêtre de sélections d'utilisateur pour suppression
+    """
     userWindow = Tk()
     userWindow.config(width=500)
 
@@ -24,6 +41,9 @@ def userWindow(selectedOU):
     
 
 def selectUser(event):
+    """
+        selectUser : Récupération de la sélections dans la liste déroulante
+    """
     global userCombo, userList, selectedUser
     selectedUser = userCombo.get()
     selectedUser = selectedUser.replace("<ADUser '","")
@@ -32,5 +52,10 @@ def selectUser(event):
 
 
 def deleteUser():
+    """
+        deleteUser : Suppression de l'utilisateur sélectionné
+    """
     global selectedUser
     pyad.adobject.ADObject.from_dn(selectedUser).delete()
+    showinfo("Titre 3", "L'utilisateur a été supprimé")
+    logging.info(f"Suppression de l'utilisateur {selectedUser}")
