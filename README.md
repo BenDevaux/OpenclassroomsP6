@@ -28,7 +28,7 @@ Le bouton "confirmer" permet ensuite la création de tous les utilisateurs prés
 Les groupes sont gérés à l'aide du fichier de configuration configuration.ini  
 Il faut ajouter le nouveau groupe dans la catégorie [GROUPS] sous la forme suivante :  
 nomdugroupe = CN=nomdugroupe,OU=Groupes,DC=opentp,DC=lan  
-Une nouvelle checkbos apparaitra alors dans la fenêtre de création manuelle.  
+Une nouvelle checkbox apparaitra alors dans la fenêtre de création manuelle.  
   
 * Ajouter une OU :  
 Les OU sont également gérées à l'aide du fichier configuration.ini  
