@@ -1,6 +1,6 @@
 """
     .Description:
-    Script de création de compte Active Directory, fenêtre de création via fichier CSV
+    Script de création de compte Active Directory manuellement ou par fichier CSV
 
     .Notes
     Auteur : Benjamin DEVAUX
@@ -8,10 +8,13 @@
     Date: 13/09/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
+    Code disponnible sur le dépôt https://github.com/BenDevaux/OpenclassroomsP6
+    Code diffusé sous licence GNU GPLv3
 """
 
 import csv
 from pyad import *
+from pyad import adquery
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.filedialog import *
@@ -52,11 +55,20 @@ def createUser():
             user = line[2]
             dname = fname + " " + lname
             password = 'Bonsoir15'
-            ou = pyad.adcontainer.ADContainer.from_dn("ou=Utilisateurs, ou=OPENTP, dc=opentp, dc=lan")
-            callUserCreation()
-            #new_user = pyad.aduser.ADUser.create(user,ou,password="Bouj15ko", optional_attributes={"givenName" : fname, "sn" : lname, "displayName" : dname})
-            showinfo("Titre 3", f"L'utilisateur {fname} {lname} a bien été créé")
-            logging.info(f"Création de l'utilisateur {fname} {lname}")
+            ou = pyad.adcontainer.ADContainer.from_dn("OU=Utilisateurs,OU=OPENTP,DC=opentp,DC=lan")
+
+            #Vérification que les users n'existent pas déjà
+            userList = []
+            for obj in ou.get_children():
+                stringObject=str(obj)
+                userList.append(stringObject)
+            if any(user in string for string in userList):
+                logging.warning(f"L'utilisateur {fname} {lname} existe déjà")
+                showwarning("Titre 2", f"L'utilisateur {fname} {lname} existe déjà.")
+            else:
+                callUserCreation()
+                showinfo("Titre 3", f"L'utilisateur {fname} {lname} a bien été créé")
+                logging.info(f"Création de l'utilisateur {fname} {lname}")
     else:
         showwarning("Titre 2", "Vous n'avez pas entré de fichier CSV, veuillez cliquer sur le bouton Parcourir")
 
@@ -74,8 +86,7 @@ def CSVFileWindow():
     """
     csvWindow = Tk()
     csvWindow.configure(bg="white")
-    #Génération des logs
-    logging.basicConfig(filename="ScriptCSVCreation.log", encoding="utf-8", format="%(asctime)s %(levelname)s: %(message)s", datefmt="%d/%m/%Y %H:%M:%S", level=logging.DEBUG)
+
     #Création d'une barre de menu
     menubar = Menu(csvWindow)
 

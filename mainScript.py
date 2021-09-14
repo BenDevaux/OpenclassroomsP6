@@ -4,10 +4,12 @@
 
     .Notes
     Auteur : Benjamin DEVAUX
-    Version: Alpha 0.1
-    Date: 23/08/2021
+    Version: 1.0
+    Date: 13/09/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
+    Code disponnible sur le dépôt https://github.com/BenDevaux/OpenclassroomsP6
+    Code diffusé sous licence GNU GPLv3
 """
 
 #import des librairies

@@ -1,6 +1,6 @@
 """
     .Description:
-    Script de création de compte Active Directory, fenêtre de création manuelle
+    Script de création de compte Active Directory manuellement ou par fichier CSV
 
     .Notes
     Auteur : Benjamin DEVAUX
@@ -8,6 +8,8 @@
     Date: 13/09/2021
 
     Réalisé sous Python 3.9.6, testé sur Windows server 2016
+    Code disponnible sur le dépôt https://github.com/BenDevaux/OpenclassroomsP6
+    Code diffusé sous licence GNU GPLv3
 """
 
 from pyad import *
@@ -129,7 +131,6 @@ def manualWindow(configuration, mainWindow):
     global firstnameEntry
     firstnameEntry = Entry(manualCreationWindow, bg="white", width=15)
     firstnameEntry.grid(row=1, pady=20, padx=20, column=1)
-    firstnameEntry.insert(0, configuration['manualWindow']['prenom'])
 
 
     #Nom de famille

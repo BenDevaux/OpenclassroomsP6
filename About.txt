@@ -1,0 +1,2 @@
+Cette application utilise la libraire Pyad distribuée sous licence Apache version 2.0
+Une copie de cette licence peut être trouvée sur http://www.apache.org/licenses/LICENSE-2.0
